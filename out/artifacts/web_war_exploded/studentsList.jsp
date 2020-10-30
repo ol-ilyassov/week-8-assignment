@@ -25,9 +25,14 @@
     <sql:query var="result" dataSource="jdbc/db">
         SELECT id, name, surname, login, password FROM student WHERE deleted = 0
     </sql:query>
+    <p>Student's List</p>
     <table>
         <tr>
-            <th>List of Students: </th>
+            <th>ID: </th>
+            <th>Name: </th>
+            <th>Surname: </th>
+            <th>Login: </th>
+            <th>Password: </th>
         </tr>
         <c:forEach items="${result.rows}" var="row">
             <tr id="tr${row.id}">

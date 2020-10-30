@@ -7,7 +7,6 @@
 
 <%-- Content --%>
 <div class="block1">
-
     <p>Status of Last Action:</p><br>
     <p id="response">
         <c:choose>
@@ -18,16 +17,21 @@
                 <c:out value="${response}"/>
             </c:when>
         </c:choose>
-    </p><br><br>
+    </p><br>
 
-    <a href="studentForm.jsp?action=add&id=0">ADD STUDENT</a>
+    <a href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br><br>
 
     <sql:query var="result" dataSource="jdbc/db">
         SELECT id, name, surname, login, password FROM student WHERE deleted = 0
     </sql:query>
+    <p>Student's List</p>
     <table>
         <tr>
-            <th>List of Students: </th>
+            <th>ID: </th>
+            <th>Name: </th>
+            <th>Surname: </th>
+            <th>Login: </th>
+            <th>Password: </th>
         </tr>
         <c:forEach items="${result.rows}" var="row">
             <tr id="tr${row.id}">
@@ -41,24 +45,25 @@
                 <td><button onclick="deleteStudent(${row.id})">DELETE</button></td>
             </tr>
         </c:forEach>
-        <script type="text/javascript">
-            function deleteStudent(taskId){
-                $.ajax({
-                        url:"servlet?id="+taskId,
-                        type: "DELETE",
-                    }
-                )
-                    .done (function(data, textStatus, jqXHR) {
-                        $('#response').text("SUCCESS: Student account deleted.");
-                        $('#tr'+taskId).remove();
-                    })
-                    .fail (function(jqXHR, textStatus, errorThrown) {
-                        alert("Error "+textStatus+": "+errorThrown);
-                    })
-            }
-        </script>
     </table>
 </div>
+
+<script type="text/javascript">
+    function deleteStudent(taskId){
+        $.ajax({
+                url:"servlet?id="+taskId,
+                type: "DELETE",
+            }
+        )
+            .done (function(data, textStatus, jqXHR) {
+                $('#response').text("SUCCESS: Student account deleted.");
+                $('#tr'+taskId).remove();
+            })
+            .fail (function(jqXHR, textStatus, errorThrown) {
+                alert("Error "+textStatus+": "+errorThrown);
+            })
+    }
+</script>
 
 <%-- Footer --%>
 <jsp:include page="footer.jsp"/>
