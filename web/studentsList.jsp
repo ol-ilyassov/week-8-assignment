@@ -19,7 +19,7 @@
         </c:choose>
     </p><br>
 
-    <a href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br>
+    <a class="btnLink" href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br>
 
     <sql:query var="result" dataSource="jdbc/db">
         SELECT id, name, surname, login, password FROM student WHERE deleted = 0
@@ -40,9 +40,9 @@
                 <td>${row.surname}</td>
                 <td>${row.login}</td>
                 <td>${row.password}</td>
-                <td><a href="studentBooks.jsp?id=${row.id}">VIEW BOOKS</a></td>
-                <td><a href="studentForm.jsp?action=update&id=${row.id}">UPDATE</a></td>
-                <td><button onclick="deleteStudent(${row.id})">DELETE</button></td>
+                <td><a class="btnLink" href="studentBooks.jsp?id=${row.id}">VIEW BOOKS</a></td>
+                <td><a class="btnLink" href="studentForm.jsp?action=update&id=${row.id}">UPDATE</a></td>
+                <td><button class="btn" onclick="deleteStudent(${row.id})">DELETE</button></td>
             </tr>
         </c:forEach>
     </table>
