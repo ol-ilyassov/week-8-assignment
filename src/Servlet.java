@@ -10,17 +10,21 @@ public class Servlet extends HttpServlet {
     /*Answer to post method*/
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String task = req.getParameter("task");
-        Todo todo = new Todo(0, task);
-        TodoJDBC.getInstance().create(todo);
+        int isbn = Integer.parseInt(req.getParameter("isbn"));
+        String name = req.getParameter("name");
+        String author = req.getParameter("author");
+        int count = Integer.parseInt(req.getParameter("count"));
+
+        Book book = new Book(isbn,name,author,count);
+        BookJDBC.getInstance().create(book);
         resp.sendRedirect("index.jsp");
     }
     /*Answer to delete method*/
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = req.getParameter("id") != null ? Integer.parseInt(req.getParameter("id")) : 0;
+        int isbn = req.getParameter("isbn") != null ? Integer.parseInt(req.getParameter("isbn")) : 0;
 
-        TodoJDBC.getInstance().delete(id);
+        BookJDBC.getInstance().delete(isbn);
 
     }
 }

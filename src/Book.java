@@ -1,18 +1,22 @@
 public class Book {
-    private String isbn;
+    private int isbn;
     private String name;
     private String author;
     private int count;
     private int deleted;
 
-    public Book(String name,String author,int count){
+    public Book(int isbn, String name, String author, int count){
+        setIsbn(isbn);
         setName(name);
         setAuthor(author);
         setCount(count);
         this.deleted=0;
     }
 
-    public String getIsbn(){
+    public void setIsbn(int isbn){
+        this.isbn=isbn;
+    }
+    public int getIsbn(){
         return isbn;
     }
 

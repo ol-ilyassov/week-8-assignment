@@ -13,25 +13,25 @@
 <jsp:include page="add.jsp" />
 <hr>
 <sql:query var="result" dataSource="jdbc/db">
-    SELECT * FROM todo
+    SELECT * FROM book WHERE deleted !=1
 </sql:query>
 <table>
-    <tr><th>task</th></tr>
+    <tr><th>book</th></tr>
 
     <c:forEach items="${result.rows}" var="row">
-        <tr id="tr${row.id}"><td>${row.task}</td><td><button onclick="deleteTask(${row.id})">DELETE</button> </td></tr>
+        <tr id="tr${row.isbn}"><td>${row.name}</td><td><button onclick="deleteTask(${row.isbn})">DELETE</button> </td></tr>
     </c:forEach>
     <script type="text/javascript">
-        function deleteTask(taskId){
-            console.log("deleteTask: "+taskId);
+        function deleteTask(bookisbn){
+            console.log("deleteTask: "+bookisbn);
             $.ajax({
-                    url:"servlet?id="+taskId,
+                    url:"servlet?isbn="+bookisbn,
                     type: "DELETE",
                 }
             )
                 .done (function(data, textStatus, jqXHR) {
                     alert("Success ");
-                    $('#tr'+taskId).remove();
+                    $('#tr'+bookisbn).remove();
                 })
                 .fail (function(jqXHR, textStatus, errorThrown) {
                     alert("Error "+textStatus+": "+errorThrown);
