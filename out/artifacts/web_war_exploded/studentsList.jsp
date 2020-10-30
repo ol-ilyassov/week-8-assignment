@@ -51,7 +51,7 @@
 <script type="text/javascript">
     function deleteStudent(taskId){
         $.ajax({
-                url:"servlet?id="+taskId,
+                url:"ServletStudent?id="+taskId,
                 type: "DELETE",
             }
         )

@@ -20,10 +20,8 @@
         <li><a href="#">#</a></li>
         <%
             if (session.getAttribute("name") == null) {
-                out.print("<li><a href='register.jsp'>Register</a></li>");
                 out.print("<li><a href='login.jsp'>Login</a></li>");
             } else {
-                out.print("<li><a href='basket.jsp'>Basket</a></li>");
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
             }

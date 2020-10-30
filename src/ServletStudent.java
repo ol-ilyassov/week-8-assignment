@@ -37,6 +37,7 @@ public class ServletStudent extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = req.getParameter("id") != null ? Integer.parseInt(req.getParameter("id")) : 0;
+
         StudentJDBC.getInstance().delete(id);
 
         String responseText = "";
