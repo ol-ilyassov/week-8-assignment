@@ -4,6 +4,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookJDBC {
@@ -67,4 +68,41 @@ public class BookJDBC {
         }
     }
 
+    public void update(int isbn,String name,String author,int count){
+        System.out.println("Update:"+isbn);
+        String sql = "UPDATE book SET name=?,author=?,count=? WHERE isbn = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, author);
+            ps.setInt(3, count);
+            ps.setInt(4, isbn);
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int checkForISBN(Book book) {
+        int counter = 0;
+        String sql = "SELECT name FROM book WHERE isbn = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, book.getIsbn());
+            ResultSet rs = ps.executeQuery();
+            while ( rs.next() ) {
+                counter++;
+            }
+            ps.close();
+            rs.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return counter;
+    }
 }

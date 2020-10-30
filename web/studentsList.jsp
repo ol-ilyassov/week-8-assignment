@@ -19,7 +19,7 @@
         </c:choose>
     </p><br>
 
-    <a href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br><br>
+    <a href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br>
 
     <sql:query var="result" dataSource="jdbc/db">
         SELECT id, name, surname, login, password FROM student WHERE deleted = 0
