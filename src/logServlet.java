@@ -3,10 +3,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
@@ -14,14 +11,13 @@ import java.sql.*;
 @WebServlet("/logServlet")
 public class logServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
         String input_login = request.getParameter("login").trim();
         String input_password = request.getParameter("password").trim();
-        int id = 0;
+        String id = "";
         String responseText ="";
 
         boolean flag = false;
-        String sql = "SELECT id FROM student WHERE login = ? AND password = ?";
+        String sql = "SELECT id FROM student WHERE login = ? AND password = ? AND deleted != 1";
         try {
             Connection connection = getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -30,7 +26,7 @@ public class logServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 flag = true;
-                id = rs.getInt("id");
+                id = rs.getString("id");
             }
             ps.close();
             rs.close();
@@ -40,11 +36,17 @@ public class logServlet extends HttpServlet {
         }
         if (flag) {
             responseText = "success";
-            session.setMaxInactiveInterval(300);
-            session.setAttribute("role", "Student");
-            session.setAttribute("userid", id);
+
+            Cookie role = new Cookie("role", "Student");
+            Cookie userId = new Cookie("userId", id);
+
+            role.setMaxAge(60*60*24);
+            userId.setMaxAge(60*60*24);
+
+            response.addCookie(role);
+            response.addCookie(userId);
         } else {
-            sql = "SELECT id FROM librarian WHERE login = ? AND password = ?";
+            sql = "SELECT id FROM librarian WHERE login = ? AND password = ? AND deleted != 1";
             try {
                 Connection connection = getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -53,7 +55,7 @@ public class logServlet extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     flag = true;
-                    id = rs.getInt("id");
+                    id = rs.getString("id");
                 }
                 ps.close();
                 rs.close();
@@ -63,9 +65,15 @@ public class logServlet extends HttpServlet {
             }
             if (flag){
                 responseText = "success";
-                session.setMaxInactiveInterval(300);
-                session.setAttribute("role", "Librarian");
-                session.setAttribute("userid", id);
+
+                Cookie role = new Cookie("role", "Librarian");
+                Cookie userId = new Cookie("userId", id);
+
+                role.setMaxAge(60*60*24);
+                userId.setMaxAge(60*60*24);
+
+                response.addCookie(role);
+                response.addCookie(userId);
             } else
                 responseText = "There is no Such User!";
         }

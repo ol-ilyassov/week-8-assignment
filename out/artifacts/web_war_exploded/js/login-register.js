@@ -92,7 +92,7 @@ $(document).ready(function(){
                 if (responseText == "success") {
                     $('#failMsg').text("");
                     clearLogFields();
-                    window.location.href = "booklist.jsp";
+                    window.location.href = "index.jsp";
                 } else {
                     $('#failMsg').text(responseText);
                 }
