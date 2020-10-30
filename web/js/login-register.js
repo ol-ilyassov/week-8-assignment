@@ -241,7 +241,7 @@ $(document).ready(function(){
                 if (responseText == "success") {
                     $('#failMsg').text("");
                     clearLogFields();
-                    window.location.href = "index.jsp";
+                    window.location.href = "booklist.jsp";
                 } else {
                     $('#failMsg').text(responseText);
                 }

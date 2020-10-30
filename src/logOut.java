@@ -11,7 +11,7 @@ public class logOut extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        String redirectURL = "index.jsp";
+        String redirectURL = "booklist.jsp";
         response.sendRedirect(redirectURL);
     }
 }

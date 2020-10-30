@@ -19,39 +19,35 @@
         </c:choose>
     </p><br>
 
-    <a class="btnLink" href="studentForm.jsp?action=add&id=0">ADD STUDENT</a><br>
+    <a class="btnLink" href="add.jsp?action=add">ADD BOOK</a><br>
 
     <sql:query var="result" dataSource="jdbc/db">
-        SELECT id, name, surname, login, password FROM student WHERE deleted = 0
+        SELECT * FROM book WHERE deleted !=1
     </sql:query>
-    <p>Student's List</p>
+    <p>Book's List</p>
     <table>
         <tr>
-            <th>ID: </th>
+            <th>ISBN: </th>
             <th>Name: </th>
-            <th>Surname: </th>
-            <th>Login: </th>
-            <th>Password: </th>
+            <th>Author: </th>
+            <th>Count: </th>
         </tr>
         <c:forEach items="${result.rows}" var="row">
-            <tr id="tr${row.id}">
-                <td>${row.id}</td>
+            <tr id="tr${row.isbn}">
                 <td>${row.name}</td>
-                <td>${row.surname}</td>
-                <td>${row.login}</td>
-                <td>${row.password}</td>
-                <td><a class="btnLink" href="studentBooks.jsp?id=${row.id}">VIEW BOOKS</a></td>
-                <td><a class="btnLink" href="studentForm.jsp?action=update&id=${row.id}">UPDATE</a></td>
-                <td><button class="btn" onclick="deleteStudent(${row.id})">DELETE</button></td>
+                <td>${row.author}</td>
+                <td>${row.count}</td>
+                <td><a class="btnLink" href="add.jsp?action=update&isbn=${row.isbn}">UPDATE</a></td>
+                <td><button class="btn" onclick="deleteBook(${row.isbn})">DELETE</button></td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
 <script type="text/javascript">
-    function deleteStudent(taskId){
+    function deleteBook(taskId){
         $.ajax({
-                url:"servlet?id="+taskId,
+                url:"ServletBook?isbn="+taskId,
                 type: "DELETE",
             }
         )

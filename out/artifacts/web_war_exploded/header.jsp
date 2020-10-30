@@ -15,7 +15,7 @@
     <label for="nav-toggle" class="nav-toggle" onclick></label>
     <h2>Menu</h2>
     <ul>
-        <li><a href="index.jsp">Home Page</a></li>
+        <li><a href="booklist.jsp">Home Page</a></li>
         <li><a href="studentsList.jsp">Students</a></li>
         <li><a href="#">#</a></li>
         <%

@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/servlet")
-public class Servlet extends HttpServlet {
+@WebServlet("/ServletBook")
+public class ServletBook extends HttpServlet {
     /*Answer to post method*/
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -30,7 +30,7 @@ public class Servlet extends HttpServlet {
             responseText = "SUCCESS: Book details was updated!";
         }
         req.setAttribute("response",responseText);
-        req.getRequestDispatcher("index.jsp").forward(req,resp);
+        req.getRequestDispatcher("booklist.jsp").forward(req,resp);
 
 
     }
