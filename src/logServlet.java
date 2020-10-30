@@ -40,6 +40,7 @@ public class logServlet extends HttpServlet {
         }
         if (flag) {
             responseText = "success";
+            session.setMaxInactiveInterval(300);
             session.setAttribute("role", "Student");
             session.setAttribute("userid", id);
         } else {
@@ -62,6 +63,7 @@ public class logServlet extends HttpServlet {
             }
             if (flag){
                 responseText = "success";
+                session.setMaxInactiveInterval(300);
                 session.setAttribute("role", "Librarian");
                 session.setAttribute("userid", id);
             } else
