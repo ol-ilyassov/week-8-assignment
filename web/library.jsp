@@ -8,34 +8,25 @@
 <%-- Content --%>
 <div class="block1">
     <sql:query var="result" dataSource="jdbc/db">
-        SELECT * FROM todo
+        SELECT * FROM book WHERE deleted !=1 AND count !=0
     </sql:query>
+    <p>Available Book's List</p>
     <table>
-        <tr><th>task</th></tr>
-
+        <tr>
+            <th>ISBN: </th>
+            <th>Name: </th>
+            <th>Author: </th>
+        </tr>
         <c:forEach items="${result.rows}" var="row">
-            <tr id="tr${row.id}"><td>${row.task}</td><td><button onclick="deleteTask(${row.id})">DELETE</button> </td></tr>
+            <tr id="tr${row.isbn}">
+                <td>${row.isbn}</td>
+                <td>${row.name}</td>
+                <td>${row.author}</td>
+            </tr>
         </c:forEach>
-        <script type="text/javascript">
-            function deleteTask(taskId){
-                console.log("deleteTask: "+taskId);
-                $.ajax({
-                        url:"servlet?id="+taskId,
-                        type: "DELETE",
-                    }
-                )
-                    .done (function(data, textStatus, jqXHR) {
-                        alert("Success ");
-                        $('#tr'+taskId).remove();
-                    })
-                    .fail (function(jqXHR, textStatus, errorThrown) {
-                        alert("Error "+textStatus+": "+errorThrown);
-                    })
-
-            }
-        </script>
     </table>
 </div>
+
 
 <%-- Footer --%>
 <jsp:include page="footer.jsp"/>
