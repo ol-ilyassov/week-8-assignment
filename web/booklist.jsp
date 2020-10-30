@@ -34,6 +34,7 @@
         </tr>
         <c:forEach items="${result.rows}" var="row">
             <tr id="tr${row.isbn}">
+                <td>${row.isbn}</td>
                 <td>${row.name}</td>
                 <td>${row.author}</td>
                 <td>${row.count}</td>
