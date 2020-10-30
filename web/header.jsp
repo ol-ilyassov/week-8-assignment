@@ -16,14 +16,19 @@
     <h2>Menu</h2>
     <ul>
         <li><a href="index.jsp">Home Page</a></li>
-        <li><a href="studentsList.jsp">Students</a></li>
-        <li><a href="#">#</a></li>
+        <li><a href="library.jsp">Library</a></li>
         <%
-            if (session.getAttribute("name") == null) {
-                out.print("<li><a href='login.jsp'>Login</a></li>");
-            } else {
+            String position = (String) session.getAttribute("position");
+            if (position.equals("Librarian")) {
+                out.print("<li><a href='studentsList.jsp'>Students</a></li>");
+                out.print("<li><a href='booksList.jsp'>Books</a></li>");
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
+            } else if (position.equals("Student")) {
+                out.print("<li><a href='account.jsp'>Account</a></li>");
+                out.print("<li><a href='logOut'>Logout</a></li>");
+            } else {
+                out.print("<li><a href='login.jsp'>Login</a></li>");
             }
         %>
     </ul>
