@@ -56,8 +56,12 @@
             }
         )
             .done (function(data, textStatus, jqXHR) {
-                $('#response').text("SUCCESS: Student account deleted.");
-                $('#tr'+studentId).remove();
+                if (data == "success") {
+                    $('#response').text("SUCCESS: Student account deleted.");
+                    $('#tr'+studentId).remove();
+                } else {
+                    $('#response').text(data);
+                }
             })
             .fail (function(jqXHR, textStatus, errorThrown) {
                 alert("Error "+textStatus+": "+errorThrown);

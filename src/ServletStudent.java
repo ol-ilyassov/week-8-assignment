@@ -37,9 +37,16 @@ public class ServletStudent extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = req.getParameter("id") != null ? Integer.parseInt(req.getParameter("id")) : 0;
-
-        StudentJDBC.getInstance().delete(id);
-
         String responseText = "";
+
+        int counter = StudentJDBC.getInstance().checkForBooks(id);
+        if (counter > 0) {
+            responseText = "ERROR: Student has borrowed books.";
+        } else {
+            StudentJDBC.getInstance().delete(id);
+            responseText = "success";
+        }
+        resp.setContentType("text/plain");
+        resp.getWriter().write(responseText);
     }
 }

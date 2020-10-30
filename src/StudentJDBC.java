@@ -2,10 +2,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class StudentJDBC {
     private static StudentJDBC instance = new StudentJDBC();
@@ -99,4 +96,41 @@ public class StudentJDBC {
         }
     }
 
+    public void addBookToStudent(int id, int isbn,int count, String returnDate) {
+        String sql = "INSERT INTO borrowed (book_id,student_id,count,borrowing_date,returning_date,deleted) VALUES (?,?,?,?,?,0)";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, isbn);
+            ps.setInt(2, id);
+            ps.setInt(3, count);
+            ps.setDate(4, Date.valueOf(java.time.LocalDate.now()));
+            ps.setDate(5, Date.valueOf(returnDate));
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int checkForBooks(int id) {
+        int counter = 0;
+        String sql = "SELECT id FROM borrowed WHERE student_id = ? AND deleted != 1";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while ( rs.next() ) {
+                counter++;
+            }
+            ps.close();
+            rs.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return counter;
+    }
 }

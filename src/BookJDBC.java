@@ -105,4 +105,77 @@ public class BookJDBC {
         }
         return counter;
     }
+
+    public int getCount(int isbn) {
+        int counter = 0;
+        String sql = "SELECT count FROM book WHERE isbn = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, isbn);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                counter = rs.getInt("count");
+            }
+            ps.close();
+            rs.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return counter;
+    }
+
+    public void setCount(int isbn, int count) {
+        int counter = 0;
+        String sql = "UPDATE book SET count = ? WHERE isbn = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, count);
+            ps.setInt(2, isbn);
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteBorrowedBook(int id) {
+        String sql = "UPDATE borrowed SET deleted=1 WHERE id = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    public String getNameOfBook(int isbn) {
+        String temp = "";
+        String sql = "SELECT name FROM book WHERE isbn = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, isbn);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                temp = rs.getString("name");
+            }
+            ps.close();
+            rs.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
+     */
 }
