@@ -19,12 +19,12 @@
         <li><a href="library.jsp">Library</a></li>
         <%
             String position = (String) session.getAttribute("position");
-            if (position.equals("Librarian")) {
+            if (position == "Librarian") {
                 out.print("<li><a href='studentsList.jsp'>Students</a></li>");
                 out.print("<li><a href='booksList.jsp'>Books</a></li>");
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
-            } else if (position.equals("Student")) {
+            } else if (position =="Student") {
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
             } else {
