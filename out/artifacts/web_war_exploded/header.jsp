@@ -15,19 +15,7 @@
     <label for="nav-toggle" class="nav-toggle" onclick></label>
     <h2>Menu</h2>
     <ul>
-        <%
-        //<li><a href="index.jsp">Home Page</a></li>
-        //<li><a href="booklist.jsp">Books</a></li>
-        //<li><a href="studentsList.jsp">Students</a></li>
-        //<li><a href='allBorrowedBooks.jsp'>Page With Events</a></li>
-        //<li><a href='account.jsp'>Account</a></li>
-
-        //<li><a href='logOut'>Logout</a></li>
-        //<li><a href="library.jsp">Library</a></li>
-
-        //<li><a href='login.jsp'>Login</a></li>
-        //<li><a href='temp.jsp'>Temp</a></li>
-%>
+        <li><a href='index.jsp'>Main Page</a></li>
         <%
             String temp = " ";
             Cookie[] cookies = null;
@@ -40,19 +28,16 @@
                 }
             }
             if (temp.equals(" ")) {
-                out.print("<li><a href='index.jsp'>Main Page</a></li>");
                 out.print("<li><a href='library.jsp'>Library</a></li>");
                 out.print("<li><a href='login.jsp'>Login</a></li>");
+            } else if (temp.equals("Student")) {
+                out.print("<li><a href='library.jsp'>Library</a></li>");
+                out.print("<li><a href='account.jsp'>Account</a></li>");
+                out.print("<li><a href='logOut'>Logout</a></li>");
             } else if (temp.equals("Librarian")) {
-                out.print("<li><a href='index.jsp'>Main Page</a></li>");
                 out.print("<li><a href='booklist.jsp'>Books</a></li>");
                 out.print("<li><a href='studentsList.jsp'>Students</a></li>");
                 out.print("<li><a href='allBorrowedBooks.jsp'>All Borrowed Books</a></li>");
-                out.print("<li><a href='account.jsp'>Account</a></li>");
-                out.print("<li><a href='logOut'>Logout</a></li>");
-            } else if (temp.equals("Student")) {
-                out.print("<li><a href='index.jsp'>Main Page</a></li>");
-                out.print("<li><a href='library.jsp'>Library</a></li>");
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
             }
