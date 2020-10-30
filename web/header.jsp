@@ -18,7 +18,7 @@
         <li><a href="index.jsp">Home Page</a></li>
         <li><a href="booklist.jsp">Books</a></li>
         <li><a href="studentsList.jsp">Students</a></li>
-        <li><a href='allBorrowedBooks.jsp'>All Borrowed Books</a></li>
+        <li><a href='allBorrowedBooks.jsp'>Page With Events</a></li>
         <li><a href='account.jsp'>Account</a></li>
 
         <li><a href='logOut'>Logout</a></li>

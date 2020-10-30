@@ -9,14 +9,6 @@
     <p>Name: <%= session.getAttribute("name")%></p><br>
     <p>Login: <%= session.getAttribute("login")%></p><br>
 
-    <jsp:useBean id="myDate1" class="java.util.Date"/>
-    <c:set target="${myDate1}" property="time" value="${session.getCreationTime()}"/>
-    <p>Session Creation Time: ${myDate1}</p><br>
-
-    <jsp:useBean id="myDate2" class="java.util.Date"/>
-    <c:set target="${myDate2}" property="time" value="${session.getLastAccessedTime()}"/>
-    <p>Session Last Accessed Time: ${myDate2}</p><br>
-
 </div>
 
 <%-- Footer --%>

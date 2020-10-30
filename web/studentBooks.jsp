@@ -46,7 +46,7 @@
     <table>
         <tr>
             <th>ID:</th>
-            <th>BOOK ISBN:</th>
+            <th>Book ISBN:</th>
             <th>Count:</th>
             <th>Borrowing Date:</th>
             <th>Returning Date:</th>
