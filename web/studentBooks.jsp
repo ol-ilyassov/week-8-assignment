@@ -21,7 +21,7 @@
     </p><br>
 
     <sql:query var="result1" dataSource="jdbc/db">
-        SELECT isbn, name FROM book WHERE deleted = 0
+        SELECT isbn, name FROM book WHERE deleted = 0 AND count>0
     </sql:query>
 
     <p>Adding Book to Student:</p><br>
@@ -46,7 +46,7 @@
     <table>
         <tr>
             <th>ID:</th>
-            <th>Book:</th>
+            <th>BOOK ISBN:</th>
             <th>Count:</th>
             <th>Borrowing Date:</th>
             <th>Returning Date:</th>
