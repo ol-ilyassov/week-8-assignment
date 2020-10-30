@@ -79,65 +79,6 @@ footer {
 	align-items: center;
 }
 
-#catalog{
-	display: flex;
-	flex-direction: column;
-	padding: 5% 5% 5% 5%;
-	background-color: #960C27;
-	border-radius: 25px;
-}
-
-#catalog div{
-	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-}
-
-#allshow{
-	padding-left: 2%;
-	padding-right: 2%;
-	grid-template-columns: 30% 30% 30%;
-	gap: 5% 5%;
-}
-
-#allshow figure{
-	padding-right: 3%;
-}
-
-#phonesshow{
-	padding-left: 2%;
-	padding-right: 2%;
-}
-
-#phonesshow figure{
-	padding-right: 1%;
-}
-
-#tabletsshow{
-	padding-left: 2%;
-	padding-right: 2%;
-}
-
-#tabletsshow figure{
-	padding-right: 1%;
-}
-
-#laptopsshow{
-	padding-left: 2%;
-	padding-right: 2%;
-}
-
-#laptopsshow figure{
-	padding-right: 1%;
-}
-
-.blox{
-	text-align: center;
-	padding-bottom: 10%;
-}
-
-.blox figure{
-	background-color: white;
-}
-
 .backMainPage {
 	display: flex;
 	align-items: center;

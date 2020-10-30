@@ -20,19 +20,19 @@
                         <input type="text" name="id" value="${param['id']}" hidden>
                         <tr>
                             <td>Name:</td>
-                            <td><input type='text' name='name' value="${row.name}"></td>
+                            <td><input type='text' name='name' value="${row.name}" required></td>
                         </tr>
                         <tr>
                             <td>Surname:</td>
-                            <td><input type='text' name='surname' value="${row.surname}"></td>
+                            <td><input type='text' name='surname' value="${row.surname}" required></td>
                         </tr>
                         <tr>
                             <td>Login:</td>
-                            <td><input type='text' name='login' value="${row.login}"></td>
+                            <td><input type='text' name='login' value="${row.login}" required></td>
                         </tr>
                         <tr>
                             <td>Password:</td>
-                            <td><input type='text' name='password' value="${row.password}"></td>
+                            <td><input type='text' name='password' value="${row.password}" required></td>
                         </tr>
                         <tr>
                             <td><input type="submit" name="submitBtn" value="OK"></td>
@@ -44,23 +44,23 @@
                 <c:otherwise>
                     <tr>
                         <td>ID:</td>
-                        <td><input type='text' name='id'></td>
+                        <td><input type='text' name='id' required></td>
                     </tr>
                     <tr>
                         <td>Name:</td>
-                        <td><input type='text' name='name'></td>
+                        <td><input type='text' name='name' required></td>
                     </tr>
                     <tr>
                         <td>Surname:</td>
-                        <td><input type='text' name='surname'></td>
+                        <td><input type='text' name='surname' required></td>
                     </tr>
                     <tr>
                         <td>Login:</td>
-                        <td><input type='text' name='login'></td>
+                        <td><input type='text' name='login' required></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input type='text' name='password'></td>
+                        <td><input type='text' name='password' required></td>
                     </tr>
                     <tr>
                         <td><input type="submit" name="submitBtn" value="OK"></td>

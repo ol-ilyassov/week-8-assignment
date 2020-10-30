@@ -15,17 +15,20 @@
     <label for="nav-toggle" class="nav-toggle" onclick></label>
     <h2>Menu</h2>
     <ul>
-        <li><a href="booklist.jsp">Home Page</a></li>
-        <li><a href="studentsList.jsp">Students</a></li>
-        <li><a href="#">#</a></li>
+        <li><a href="index.jsp">Home Page</a></li>
+        <li><a href="library.jsp">Library</a></li>
         <%
-            if (session.getAttribute("name") == null) {
-                out.print("<li><a href='register.jsp'>Register</a></li>");
-                out.print("<li><a href='login.jsp'>Login</a></li>");
-            } else {
-                out.print("<li><a href='basket.jsp'>Basket</a></li>");
+            String position = (String) session.getAttribute("position");
+            if (position == "Librarian") {
+                out.print("<li><a href='studentsList.jsp'>Students</a></li>");
+                out.print("<li><a href='booksList.jsp'>Books</a></li>");
                 out.print("<li><a href='account.jsp'>Account</a></li>");
                 out.print("<li><a href='logOut'>Logout</a></li>");
+            } else if (position =="Student") {
+                out.print("<li><a href='account.jsp'>Account</a></li>");
+                out.print("<li><a href='logOut'>Logout</a></li>");
+            } else {
+                out.print("<li><a href='login.jsp'>Login</a></li>");
             }
         %>
     </ul>

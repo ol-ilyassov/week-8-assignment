@@ -49,15 +49,15 @@
 </div>
 
 <script type="text/javascript">
-    function deleteStudent(taskId){
+    function deleteStudent(studentId){
         $.ajax({
-                url:"servlet?id="+taskId,
+                url:"ServletStudent?id="+studentId,
                 type: "DELETE",
             }
         )
             .done (function(data, textStatus, jqXHR) {
                 $('#response').text("SUCCESS: Student account deleted.");
-                $('#tr'+taskId).remove();
+                $('#tr'+studentId).remove();
             })
             .fail (function(jqXHR, textStatus, errorThrown) {
                 alert("Error "+textStatus+": "+errorThrown);
