@@ -11,6 +11,8 @@
         <sql:query var="result2" dataSource="jdbc/db">
         SELECT * FROM borrowed WHERE deleted != 1 ORDER BY borrowing_date DESC, returning_date DESC, id ASC
         </sql:query>
+    <h1>List of All Borrowed Books</h1><br>
+    <p>List of borrowed books is listed by borrowing date and returning date.</p><br>
         <table>
             <tr>
                 <th>ID:</th>

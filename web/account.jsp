@@ -25,8 +25,8 @@
             }
         }
 
-        out.println("<p>Role of Account: "+ role +"</p>");
-        out.println("<p>Id of Account: "+ userId +"</p>");
+        out.println("<p>Role of Account: "+ role +"</p><br>");
+        out.println("<p>Id of Account: "+ userId +"</p><br>");
 
         if (role.equals("Student")) {
             int number = Integer.parseInt(userId);
@@ -34,6 +34,7 @@
     <sql:query var="result2" dataSource="jdbc/db">
         SELECT * FROM borrowed WHERE deleted != 1 AND student_id = <%=number%>
     </sql:query>
+    <p>List of book's borrowed by you:</p>
     <table>
         <tr>
             <th>ID:</th>
